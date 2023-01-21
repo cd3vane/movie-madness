@@ -73,7 +73,7 @@ jobs:
         with:
           node-version: 16
       - name: Run backend nohup
-        run: npm run server
+        run: npm run start
 
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
