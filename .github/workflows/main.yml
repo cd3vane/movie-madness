@@ -68,12 +68,16 @@ jobs:
           name: 'config/default.json'
           json: ${{ secrets.DEFAULT_JSON_SECRET }}
 
-      - name: Set up node
-        uses: actions/setup-node@v1
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Run backend nohup
-        run: npm run server
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
+        run: npm run server &
 
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
