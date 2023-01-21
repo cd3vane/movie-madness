@@ -62,12 +62,8 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v5
         with:
-         # API runs on port 3050
-         # Web server runs on port 8080
-          start: |
-            npm run start
-            npm run client
-          wait-on: 'http://localhost:3000', 'http://localhost:5000'
+          start: npm run start, npm run client
+          wait-on: 'http://localhost:5000', 'http://localhost:3000'
         env:
           REACT_APP_TMDB_KEY: ${{ secrets.REACT_APP_TMDB_KEY }}
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
