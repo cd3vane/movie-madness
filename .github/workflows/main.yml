@@ -72,17 +72,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-<<<<<<< HEAD
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
         run: npm run server &
-=======
-      - name: Run backend nohup
-        run: npm run start
->>>>>>> bdf1bc8e4fd67c4a9afd5c71e0a9e05d000fe48e
 
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
