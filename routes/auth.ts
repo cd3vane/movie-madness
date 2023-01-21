@@ -1,9 +1,4 @@
-import express from 'express';
-import controller from '../controllers/auth';
-const router = express.Router();
+import * as userController from '../controllers/auth';
 
-router.get('/api/auth', controller.testGetUser);
-router.post('/api/auth', controller.authenticateUser);
-
-
-export = router;
+Router.post('/login', userController.loginOne);
+Router.post('/register', userController.registerOne);
