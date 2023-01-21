@@ -62,6 +62,8 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v5
         with:
+         # API runs on port 3050
+         # Web server runs on port 8080
           start: |
             npm start
             npm client
