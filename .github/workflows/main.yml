@@ -5,6 +5,7 @@ on:
       - main
 permissions:
   contents: write
+  
 jobs:
   lint:
     name: ⬣ ESLint
@@ -62,6 +63,7 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
         with:
+          working-directory: frontend
           start: npm run dev
           wait-on: 'http://localhost:5000', 'http://localhost:3000'
         env:
