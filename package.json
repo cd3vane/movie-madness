@@ -22,7 +22,6 @@
   "dependencies": {
     "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",
-    "bloodhound": "^1.0.0",
     "client": "file:client",
     "config": "^3.3.3",
     "express": "^4.18.2",

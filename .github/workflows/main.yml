@@ -70,7 +70,9 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
         with:
-          start: npm run dev
+          run: npm run server
+          working-directory: frontend
+          start: npm start
           wait-on: 'http://localhost:3000'
         env:
           REACT_APP_TMDB_KEY: ${{ secrets.REACT_APP_TMDB_KEY }}
