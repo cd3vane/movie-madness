@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: [],
   rules: {
     'react/react-in-jsx-scope': 'off'
   }
