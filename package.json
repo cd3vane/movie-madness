@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint": "eslint --cache --cache-location ./frontend/node_modules/.cache/eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|css|md)\"",
     "client": "npm start --prefix frontend",
