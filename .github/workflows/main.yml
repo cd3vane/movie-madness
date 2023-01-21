@@ -60,17 +60,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: create-json
         id: create-json
         uses: jsdaniell/create-json@1.1.2
         with:
           name: 'config/default.json'
           json: ${{ secrets.DEFAULT_JSON_SECRET }}
+
+      - name: Set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Run backend nohup
+        run: nohup node server.js &
+
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
         with:
-          run: npm run server
           working-directory: frontend
           start: npm start
           wait-on: 'http://localhost:3000'
