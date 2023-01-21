@@ -77,6 +77,8 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
+
+      - name: Start Backend
         run: npm run server &
 
       - name: Cypress run
