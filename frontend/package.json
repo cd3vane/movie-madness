@@ -34,12 +34,6 @@
     "cypress:open": "npx cypress open",
     "typecheck": "tsc -b && tsc -b cypress"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "prettier": {},
   "eslintIgnore": [
     "/node_modules",
