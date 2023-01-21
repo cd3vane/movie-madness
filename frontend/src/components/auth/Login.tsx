@@ -26,7 +26,7 @@ const Login = () => {
       console.log("checking auth");
       navigate("/account/dashboard");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <form onSubmit={(e) => onSubmit(e)} className="form">

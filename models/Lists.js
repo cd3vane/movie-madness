@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const ListsSchema = new Schema({
   user: {
@@ -33,6 +33,6 @@ const ListsSchema = new Schema({
       }
     }
   ]
-});
+})
 
-module.exports = Lists = mongoose.model('lists', ListsSchema);
+module.exports = Lists = mongoose.model('lists', ListsSchema)

@@ -1,28 +1,27 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import React, { useState } from 'react'
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    password2: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   password2: ''
+  // })
 
-  const { username, email, password, password2 } = formData;
+  // const { username, email, password, password2 } = formData
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  //   setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password !== password2) {
-      console.log("error");
-      return;
-    } else {
-      //register the user
-    }
-  };
+  // const onSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   if (password !== password2) {
+  //     console.log('error')
+  //     return
+  //   } else {
+  //     //register the user
+  //   }
+  // }
 
   // // Redirect if logged in
   // if (isAuthenticated) {
