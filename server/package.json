@@ -1,28 +1,27 @@
 {
-  "name": "movie-madness",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Movie app with react",
+  "description": "Server for movie app",
   "main": "index.js",
   "engines": {
-    "node": "16.x",
-    "npm": "8.1.x"
+    "node": ">=16",
+    "npm": ">=8"
   },
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "lint": "eslint --cache --cache-location ./frontend/node_modules/.cache/eslint .",
+    "lint": "eslint --cache --cache-location ../client/node_modules/.cache/eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|css|md)\"",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "client": "cd ../client & npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",
-    "client": "file:client",
+    "client": "file:../client",
     "config": "^3.3.3",
     "express": "^4.18.2",
     "express-validator": "^6.8.1",
