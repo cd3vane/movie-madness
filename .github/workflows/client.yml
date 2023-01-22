@@ -4,16 +4,11 @@ on:
     branches:
       - main
 
-defaults:
-  run:
-    working-directory: scripts
 jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: client
+
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -28,6 +23,7 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
         with:
+          working-directory: client
           useLockFile: false
 
       - name: 🔬 Lint
@@ -54,6 +50,7 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
         with:
+          working-directory: client
           useLockFile: false
 
       - name: 🔎 Type check
@@ -72,7 +69,7 @@ jobs:
         id: create-json
         uses: jsdaniell/create-json@1.1.2
         with:
-          node-version: 16
+          dir: server
           name: 'config/default.json'
           json: ${{ secrets.DEFAULT_JSON_SECRET }}
 
@@ -84,6 +81,7 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
         with:
+          working-directory: client
           useLockFile: false
 
       - name: Start Backend
@@ -94,6 +92,7 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
         with:
+          working-directory: client
           start: npm start
           wait-on: 'http://localhost:3000'
         env:
