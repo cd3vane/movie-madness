@@ -30,8 +30,8 @@ export const AuthProvider = (props: any) => {
     const loginPayload = { email, password };
     try {
       const res = await api.post("/auth", loginPayload);
-      console.log(res.data);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      return res.data;
     } catch (err: any) {
       dispatch({
         type: "LOGIN_ERROR",

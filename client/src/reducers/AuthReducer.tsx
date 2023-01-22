@@ -35,7 +35,7 @@ export const initialState: AuthState = {
   errorMessage: "",
   login: () => {},
   logout: () => {},
-  register: () => {}
+  register: () => {},
 };
 
 export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
@@ -45,7 +45,7 @@ export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
         ...initialState,
         isAuthenticated: true,
         userLoading: false,
-        user: action.payload
+        user: action.payload,
       };
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":

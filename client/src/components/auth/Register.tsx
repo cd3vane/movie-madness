@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { AlertContext } from "../../context/AlertContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Register = () => {
     password2: "",
   });
   const { register, isAuthenticated } = useContext(AuthContext);
+  const { setAlert } = useContext(AlertContext);
   const navigate = useNavigate();
 
   const { username, email, password, password2 } = formData;
@@ -20,10 +22,11 @@ const Register = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("error");
+      setAlert("Passwords are not the same", "fail");
       return;
     } else {
-      register(formData)
+      register(formData);
+      setAlert("Successfully registered " + formData.username, "success");
     }
   };
 

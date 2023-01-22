@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { AlertContext } from "../../context/AlertContext";
 import { useNavigate } from "react-router-dom";
 import { Credentials } from "../../types";
 
@@ -10,6 +11,7 @@ const Login = () => {
     password: "",
   });
   const { login, isAuthenticated } = useContext(AuthContext);
+  const { setAlert } = useContext(AlertContext);
 
   const { email, password } = formData;
 
@@ -23,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("checking auth");
+      setAlert("Successfully logged you in", "success");
       navigate("/account/dashboard");
     }
   }, [isAuthenticated, navigate]);
