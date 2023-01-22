@@ -6,6 +6,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    working-directory: client
+
 jobs:
   lint:
     name: ⬣ ESLint
@@ -79,13 +83,13 @@ jobs:
           useLockFile: false
 
       - name: Start Backend
+        working-directory: server
         run: npm run server &
 
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
         with:
-          working-directory: frontend
           start: npm start
           wait-on: 'http://localhost:3000'
         env:
