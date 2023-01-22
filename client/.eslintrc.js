@@ -3,17 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
     jest: true,
-    node: true
+    node: true,
   },
-  extends: ['prettier'],
+  extends: ["prettier"],
 
   overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
   plugins: [],
   rules: {
-    'react/react-in-jsx-scope': 'off'
-  }
-}
+    "react/react-in-jsx-scope": "off",
+  },
+};

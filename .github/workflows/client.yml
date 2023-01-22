@@ -68,18 +68,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@1.1.2
-        with:
-          dir: server
-          name: 'config/default.json'
-          json: ${{ secrets.DEFAULT_JSON_SECRET }}
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          dir: server
+          name: 'config/default.json'
+          json: ${{ secrets.DEFAULT_JSON_SECRET }}
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1

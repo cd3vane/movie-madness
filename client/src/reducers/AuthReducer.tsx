@@ -15,44 +15,54 @@ export type AuthState = {
   errorMessage: string;
   login: any;
   logout: any;
+  register: any;
 };
 
 type ReducerAction =
-  | { type: "REQUEST_LOGIN"; payload: Credentials }
+  | { type: "USER_LOADED"; payload: any }
+  | { type: "AUTH_ERROR" }
   | { type: "LOGIN_SUCCESS"; payload: any }
+  | { type: "REGISTER_SUCCESS"; payload: any }
+  | { type: "REGISTER_FAIL" }
   | { type: "LOGOUT" }
   | { type: "LOGIN_ERROR"; error: string };
 
 export const initialState: AuthState = {
   userDetails: "" || user,
   token: "" || token,
-  loading: false,
+  loading: true,
   isAuthenticated: false,
   errorMessage: "",
   login: () => {},
   logout: () => {},
+  register: () => {}
 };
 
 export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
   switch (action.type) {
-    case "REQUEST_LOGIN":
+    case "USER_LOADED":
       return {
         ...initialState,
-        loading: true,
+        isAuthenticated: true,
+        userLoading: false,
+        user: action.payload
       };
+    case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
       return {
         ...initialState,
+        ...action.payload,
         token: action.payload.token,
         loading: false,
       };
+    case "AUTH_ERROR":
     case "LOGOUT":
       return {
         ...initialState,
+        loading: false,
         user: "",
         token: "",
       };
-
     case "LOGIN_ERROR":
       return {
         ...initialState,

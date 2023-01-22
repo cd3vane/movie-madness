@@ -11,9 +11,23 @@ export const AuthProvider = (props: any) => {
     localStorage.setItem("token", JSON.stringify(state.token));
   }, [state]);
 
+  const loadUser = async () => {
+    try {
+      const res = await api.get("/auth");
+
+      dispatch({
+        type: "USER_LOADED",
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: "AUTH_ERROR",
+      });
+    }
+  };
+
   const login = async (email: string, password: string) => {
     const loginPayload = { email, password };
-    dispatch({ type: "REQUEST_LOGIN", payload: loginPayload });
     try {
       const res = await api.post("/auth", loginPayload);
       console.log(res.data);
@@ -22,6 +36,28 @@ export const AuthProvider = (props: any) => {
       dispatch({
         type: "LOGIN_ERROR",
         error: err.response.data.errors,
+      });
+    }
+  };
+
+  const register = async (registerPayload: any) => {
+    try {
+      const res = await api.post("/users", registerPayload);
+
+      dispatch({
+        type: "REGISTER_SUCCESS",
+        payload: res.data,
+      });
+      loadUser();
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error: any) => console.log(error.errorMessage));
+      }
+
+      dispatch({
+        type: "REGISTER_FAIL",
       });
     }
   };
@@ -40,6 +76,7 @@ export const AuthProvider = (props: any) => {
         errorMessage: "",
         login: login,
         logout: logout,
+        register: register,
       }}
     >
       {props.children}
