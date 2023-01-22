@@ -3,17 +3,17 @@ on:
   push:
     branches:
       - main
-permissions:
-  contents: write
 
 defaults:
   run:
-    working-directory: client
-
+    working-directory: scripts
 jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -36,6 +36,9 @@ jobs:
   typecheck:
     name: TypeScript
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scripts
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -69,6 +72,7 @@ jobs:
         id: create-json
         uses: jsdaniell/create-json@1.1.2
         with:
+          node-version: 16
           name: 'config/default.json'
           json: ${{ secrets.DEFAULT_JSON_SECRET }}
 
