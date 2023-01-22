@@ -8,6 +8,9 @@ jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
 
     steps:
       - name: 🛑 Cancel Previous Runs
@@ -28,8 +31,6 @@ jobs:
 
       - name: 🔬 Lint
         run: npm run lint
-        with:
-          working-directory: client
 
   typecheck:
     name: TypeScript
