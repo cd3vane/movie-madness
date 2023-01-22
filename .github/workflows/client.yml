@@ -89,7 +89,7 @@ jobs:
 
       - name: Start Backend
         working-directory: server
-        run: npm run server &
+        run: npm run start &
 
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action

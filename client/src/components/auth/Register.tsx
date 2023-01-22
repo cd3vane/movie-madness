@@ -9,7 +9,7 @@ const Register = () => {
     password: "",
     password2: "",
   });
-  const isAuthenticated = useContext(AuthContext);
+  const { register, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { username, email, password, password2 } = formData;
@@ -23,7 +23,7 @@ const Register = () => {
       console.log("error");
       return;
     } else {
-      //register the user
+      register(formData)
     }
   };
 
@@ -42,6 +42,7 @@ const Register = () => {
           <form onSubmit={onSubmit}>
             <input
               type="text"
+              id="username"
               name="username"
               value={username}
               onChange={(e) => onChange(e)}
@@ -53,6 +54,7 @@ const Register = () => {
               type="text"
               className="border-grey-light mb-4 block w-full rounded border p-3"
               name="email"
+              id="email"
               value={email}
               onChange={(e) => onChange(e)}
               placeholder="Email"
@@ -62,6 +64,7 @@ const Register = () => {
               type="password"
               className="border-grey-light mb-4 block w-full rounded border p-3"
               name="password"
+              id="password"
               value={password}
               onChange={(e) => onChange(e)}
               placeholder="Password"
@@ -70,6 +73,7 @@ const Register = () => {
               type="password"
               className="border-grey-light mb-4 block w-full rounded border p-3"
               name="password2"
+              id="password2"
               value={password2}
               onChange={(e) => onChange(e)}
               placeholder="Confirm Password"
@@ -77,6 +81,7 @@ const Register = () => {
 
             <button
               type="submit"
+              id="submit"
               className="bg-green hover:bg-green-dark my-1 w-full rounded py-3 text-center text-white focus:outline-none"
             >
               Create Account
