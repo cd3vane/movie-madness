@@ -81,10 +81,16 @@ jobs:
           name: 'config/default.json'
           json: ${{ secrets.DEFAULT_JSON_SECRET }}
 
-      - name: 📥 Download deps
+      - name: 📥 Download deps client
         uses: bahmutov/npm-install@v1
         with:
           working-directory: client
+          useLockFile: false
+
+      - name: 📥 Download deps server
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: server
           useLockFile: false
 
       - name: Start Backend
