@@ -22,7 +22,7 @@ describe("Auth flows", () => {
       .should("have.text", "Passwords are not the same");
   });
 
-  it("registers a new user", () => {
+  it("completes both steps of registering a user and then deletes that user as cleanup", () => {
     cy.visit("/register");
     cy.get("#username").type("testerguy");
     cy.get("#email").type("testing2@gmail.com");
@@ -35,8 +35,8 @@ describe("Auth flows", () => {
     cy.get("#firstname").type("tester");
     cy.get("#lastname").type("Guy");
     cy.get("#submit").click();
-    cy.get("#alert")
-      .should("exist")
-      .should("have.text", "Successfully updated profile");
+    cy.url().should("include", "/account/dashboard");
+    cy.get("h1").should("include.text", "signed in version");
+    cy.get('#delete').click()
   });
 });

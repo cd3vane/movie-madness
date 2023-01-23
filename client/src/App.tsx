@@ -26,7 +26,7 @@ function App() {
     } else {
       setAuthToken(localStorage.token);
     }
-  }, []);
+  }, [localStorage, loadUser]);
   return (
     <div className="App">
       <AlertProvider>

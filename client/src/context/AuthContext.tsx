@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import { AuthState, AuthReducer, initialState } from "../reducers/AuthReducer";
 import { api } from "../utils/api";
+import setAuthToken from "../utils/setAuthToken";
 
 export const AuthContext = createContext<AuthState>(initialState);
 
@@ -11,6 +12,28 @@ export const AuthProvider = (props: any) => {
     localStorage.setItem("token", JSON.stringify(state.token));
     localStorage.setItem("user", JSON.stringify(state.user));
   }, [state]);
+
+  const createDefaultLists = async () => {
+  try {
+    const watchlist = {
+      name: 'Watchlist',
+      description: 'Movies I need to watch'
+    };
+    const watched = {
+      name: 'Watched',
+      description: 'Movies I have watched'
+    };
+    const liked = {
+      name: 'Liked',
+      description: 'Movies I like'
+    };
+    await api.post('/lists', watchlist);
+    await api.post('/lists', watched);
+    await api.post('/lists', liked);
+  } catch (err) {
+    console.log(err)
+  }
+};
 
   const loadUser = async () => {
     try {
@@ -47,12 +70,12 @@ export const AuthProvider = (props: any) => {
     try {
       const res = await api.post("/users", registerPayload);
 
-      console.log(res.data);
-
       dispatch({
         type: "REGISTER_SUCCESS",
         payload: res.data,
       });
+      createDefaultLists()
+      setAuthToken(res.data.token);
     } catch (err: any) {
       const errors = err.response.data.errors;
 

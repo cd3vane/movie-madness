@@ -25,14 +25,18 @@ const Register = () => {
       setAlert("Passwords are not the same", "fail");
       return;
     } else {
-      register(formData);
-      setAlert("Successfully registered " + formData.username, "success");
+      try{
+        register(formData);
+        setAlert("Successfully registered " + formData.username, "success");
+      } catch(err){
+        setAlert("Something went wrong " + err, "error");
+      }
+      
     }
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("checking auth");
       navigate("/create-profile");
     }
   }, [isAuthenticated, navigate]);

@@ -2,7 +2,8 @@ import { api } from "./api";
 
 const setAuthToken = (token: string) => {
   if (token) {
-    api.defaults.headers["x-auth-token"] = token.slice(1, -1);
+    console.log(token)
+    api.defaults.headers["x-auth-token"] = token;
     localStorage.setItem("token", token);
   } else {
     console.log("deleting header");
