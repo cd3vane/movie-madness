@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 type ProfileItemProps = {
   profile: any;
 };
-const ProfileItem = ({ profile }: ProfileItemProps) => {
+const ProfileItem = ({ profile: {
+    firstName,
+    lastName,
+    followers,
+    following,
+    user,
+    bio
+  } }: ProfileItemProps) => {
   return (
     <div className="border-b-4 p-6 dark:bg-gray-600 dark:text-gray-100 sm:p-12">
       <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6">
@@ -14,13 +21,14 @@ const ProfileItem = ({ profile }: ProfileItemProps) => {
         />
         <div className="flex flex-col">
           <h4 className="text-center text-lg font-semibold md:text-left">
-            {profile.name}
+            {firstName}{" "}{lastName}
           </h4>
-          <p className="dark:text-gray-400">{profile.bio}</p>
+          <p className="dark:text-gray-400">Followers: {followers.length}</p>
+          <p className="dark:text-gray-400">Following: {following.length}</p>
         </div>
       </div>
       <div className="align-center flex justify-center space-x-4 pt-4">
-        <Link to="/profile/1">View Profile</Link>
+        <Link to={`/profile/${user._id}`}>View Profile</Link>
       </div>
     </div>
   );

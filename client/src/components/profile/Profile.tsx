@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-// import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 // import ProfileTop from './ProfileTop';
 // import ProfileAbout from './ProfileAbout';
 // import ProfileLists from './ProfileLists';
@@ -9,9 +9,12 @@ const Profile = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [profile, setProfile] = useState<any>([]);
 
+  const params = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
-      const res = await api.get("/profile/user/63adc35933443f001653ca86");
+      console.log(params.id)
+      const res = await api.get(`/profile/${params.id}`);
       setProfile(res.data);
       setLoading(false);
     };
