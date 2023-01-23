@@ -33,7 +33,7 @@ const Register = () => {
   useEffect(() => {
     if (isAuthenticated) {
       console.log("checking auth");
-      navigate("/account/dashboard");
+      navigate("/create-profile");
     }
   }, [isAuthenticated, navigate]);
 
@@ -50,7 +50,7 @@ const Register = () => {
               value={username}
               onChange={(e) => onChange(e)}
               className="border-grey-light mb-4 block w-full rounded border p-3"
-              placeholder="Full Name"
+              placeholder="Username"
             />
 
             <input

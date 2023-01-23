@@ -1,17 +1,30 @@
+import { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthContext, AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
 import Login from "./components/auth/Login";
 import Discover from "./components/movies/Discover";
 import Alert from "./components/layout/Alert";
 import Profile from "./components/profile/Profile";
 import Profiles from "./components/profiles/Profiles";
+import CreateProfile from "./components/auth/CreateProfile";
+import setAuthToken from "./utils/setAuthToken";
+
+if (localStorage.token !== "") {
+  setAuthToken(localStorage.token);
+  console.log("setting token for you");
+}
 
 function App() {
+  const { loadUser } = useContext(AuthContext);
+  useEffect(() => {
+    loadUser;
+    console.log("loading you my guy");
+  }, []);
   return (
     <div className="App">
       <AlertProvider>
@@ -28,6 +41,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profiles" element={<Profiles />} />
                 <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/create-profile" element={<CreateProfile />} />
               </Routes>
             </div>
           </Router>

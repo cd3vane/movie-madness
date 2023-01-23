@@ -34,4 +34,4 @@ CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
 };
 
-export default CommentForm
+export default CommentForm;

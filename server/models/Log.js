@@ -1,17 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ListsSchema = new Schema({
+const LogSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
   },
   movies: [
     {
@@ -30,6 +22,14 @@ const ListsSchema = new Schema({
       date: {
         type: Date,
         default: Date.now(),
+      },
+      rating: {
+        type: Number,
+        default: 0,
+      },
+      loggedCount: {
+        type: Number,
+        default: 0,
       },
     },
   ],

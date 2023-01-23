@@ -9,17 +9,20 @@ export const AuthProvider = (props: any) => {
 
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(state.token));
+    localStorage.setItem("user", JSON.stringify(state.user));
   }, [state]);
 
   const loadUser = async () => {
     try {
       const res = await api.get("/auth");
 
+      console.log(res.data);
       dispatch({
         type: "USER_LOADED",
         payload: res.data,
       });
     } catch (err) {
+      console.log(err);
       dispatch({
         type: "AUTH_ERROR",
       });
@@ -44,11 +47,12 @@ export const AuthProvider = (props: any) => {
     try {
       const res = await api.post("/users", registerPayload);
 
+      console.log(res.data);
+
       dispatch({
         type: "REGISTER_SUCCESS",
         payload: res.data,
       });
-      loadUser();
     } catch (err: any) {
       const errors = err.response.data.errors;
 
@@ -69,7 +73,7 @@ export const AuthProvider = (props: any) => {
   return (
     <AuthContext.Provider
       value={{
-        userDetails: state.userDetails,
+        user: state.user,
         token: state.token,
         loading: false,
         isAuthenticated: state.token ? true : false,
@@ -77,6 +81,7 @@ export const AuthProvider = (props: any) => {
         login: login,
         logout: logout,
         register: register,
+        loadUser: loadUser,
       }}
     >
       {props.children}

@@ -1,14 +1,5 @@
-import { Credentials } from "../types";
-
-let user = localStorage.getItem("currentUser")
-  ? JSON.parse(localStorage.getItem("currentUser") || "").user
-  : "";
-let token = localStorage.getItem("currentUser")
-  ? JSON.parse(localStorage.getItem("currentUser") || "").auth_token
-  : "";
-
 export type AuthState = {
-  userDetails: string;
+  user: string;
   token: string;
   loading: boolean;
   isAuthenticated: boolean;
@@ -16,6 +7,7 @@ export type AuthState = {
   login: any;
   logout: any;
   register: any;
+  loadUser: any;
 };
 
 type ReducerAction =
@@ -28,14 +20,15 @@ type ReducerAction =
   | { type: "LOGIN_ERROR"; error: string };
 
 export const initialState: AuthState = {
-  userDetails: "" || user,
-  token: "" || token,
+  user: JSON.parse(localStorage.getItem("user") || ""),
+  token: JSON.parse(localStorage.getItem("token") || ""),
   loading: true,
   isAuthenticated: false,
   errorMessage: "",
   login: () => {},
   logout: () => {},
   register: () => {},
+  loadUser: () => {},
 };
 
 export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
@@ -44,15 +37,15 @@ export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
       return {
         ...initialState,
         isAuthenticated: true,
-        userLoading: false,
         user: action.payload,
       };
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
       return {
         ...initialState,
-        ...action.payload,
+        isAuthenticated: true,
         token: action.payload.token,
+        user: action.payload,
         loading: false,
       };
     case "AUTH_ERROR":
