@@ -20,8 +20,8 @@ type ReducerAction =
   | { type: "LOGIN_ERROR"; error: string };
 
 export const initialState: AuthState = {
-  user: JSON.parse(localStorage.getItem("user") || ""),
-  token: JSON.parse(localStorage.getItem("token") || ""),
+  user: JSON.parse(localStorage.getItem("user") || '""'),
+  token: JSON.parse(localStorage.getItem("token") || '""'),
   loading: true,
   isAuthenticated: false,
   errorMessage: "",
@@ -43,6 +43,7 @@ export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
     case "LOGIN_SUCCESS":
       return {
         ...initialState,
+        ...action.payload,
         isAuthenticated: true,
         token: action.payload.token,
         user: action.payload,
@@ -53,6 +54,7 @@ export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
       return {
         ...initialState,
         loading: false,
+        isAuthenticated: false,
         user: "",
         token: "",
       };

@@ -39,8 +39,8 @@ router.post(
   "/",
   auth,
   [
-    check("firstName", "Name is required").notEmpty(),
-    check("firstName", "Name is required").notEmpty(),
+    check("firstName", "First name is required").notEmpty(),
+    check("lastName", "Last name is required").notEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);

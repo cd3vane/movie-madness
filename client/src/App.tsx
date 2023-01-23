@@ -14,16 +14,20 @@ import Profiles from "./components/profiles/Profiles";
 import CreateProfile from "./components/auth/CreateProfile";
 import setAuthToken from "./utils/setAuthToken";
 
-if (localStorage.token !== "") {
-  setAuthToken(localStorage.token);
-  console.log("setting token for you");
-}
+
 
 function App() {
-  const { loadUser } = useContext(AuthContext);
+  const { loadUser, logout } = useContext(AuthContext);
   useEffect(() => {
     loadUser;
-    console.log("loading you my guy");
+    // @ts-ignore
+    var value = JSON.parse(localStorage.getItem("token"));
+    if (!value) {
+      console.log('token is empty')
+      logout;
+    } else{
+      setAuthToken(localStorage.token)
+    }
   }, []);
   return (
     <div className="App">

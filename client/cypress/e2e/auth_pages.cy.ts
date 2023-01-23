@@ -32,5 +32,13 @@ describe("Auth flows", () => {
     cy.get("#alert")
       .should("exist")
       .should("have.text", "Successfully registered testerguy");
+    cy.get("#firstname").type("tester");
+    cy.get("#lastname").type("Guy");
+    cy.get("#submit").click();
+    cy.get("#alert")
+      .should("exist")
+      .should("have.text", "Successfully updated profile");
   });
+
+  
 });

@@ -76,7 +76,7 @@ export const AuthProvider = (props: any) => {
         user: state.user,
         token: state.token,
         loading: false,
-        isAuthenticated: state.token ? true : false,
+        isAuthenticated: state.isAuthenticated,
         errorMessage: "",
         login: login,
         logout: logout,
