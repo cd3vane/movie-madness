@@ -8,6 +8,8 @@ import { AlertProvider } from "./context/AlertContext";
 import Login from "./components/auth/Login";
 import Discover from "./components/movies/Discover";
 import Alert from "./components/layout/Alert";
+import Profile from "./components/profile/Profile";
+import Profiles from "./components/profiles/Profiles";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
                 <Route path="/discover" element={<Discover />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/profiles" element={<Profiles />} />
+                <Route path="/profile/:id" element={<Profile />} />
               </Routes>
             </div>
           </Router>
