@@ -25,27 +25,22 @@ const CreateProfile = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     createProfile(formData.firstName, formData.lastName);
-    
   };
 
-  const createProfile = async (firstName : string, lastName: string) => {
-      const profileDetails = { firstName, lastName }
-    try{
-      console.log(api.defaults.headers)
+  const createProfile = async (firstName: string, lastName: string) => {
+    const profileDetails = { firstName, lastName };
+    try {
+      console.log(api.defaults.headers);
       const res = await api.post("/profile", profileDetails);
       setAlert(
-      "Successfully created your profile: " + formData.firstName,
-      "success"
-      )
-      navigate('/account/dashboard')
-    } catch(err : any){
-      setAlert(
-      "There was an error creating your profile " + err,
-      "error"
-    );
-      console.log(err)
+        "Successfully created your profile: " + formData.firstName,
+        "success"
+      );
+      navigate("/account/dashboard");
+    } catch (err: any) {
+      setAlert("There was an error creating your profile " + err, "error");
+      console.log(err);
     }
-   
   };
 
   return (

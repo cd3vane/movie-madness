@@ -39,6 +39,4 @@ describe("Auth flows", () => {
       .should("exist")
       .should("have.text", "Successfully updated profile");
   });
-
-  
 });

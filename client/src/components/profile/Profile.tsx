@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 // import ProfileTop from './ProfileTop';
 // import ProfileAbout from './ProfileAbout';
 // import ProfileLists from './ProfileLists';
@@ -13,7 +13,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(params.id)
+      console.log(params.id);
       const res = await api.get(`/profile/${params.id}`);
       setProfile(res.data);
       setLoading(false);
