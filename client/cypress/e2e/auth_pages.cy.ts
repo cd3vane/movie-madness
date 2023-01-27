@@ -1,5 +1,5 @@
 describe("Auth flows", () => {
-  it.only("fails with invalid username", () => {
+  it("fails with invalid username", () => {
     cy.login("invalid@gmail.com", "anyhting");
     
   });

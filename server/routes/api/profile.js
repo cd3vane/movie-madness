@@ -138,11 +138,11 @@ router.get(
 // @access   Private
 router.delete("/", auth, async (req, res) => {
   try {
+    console.log("attempting")
     // Remove user posts
     // Remove profile
     // Remove user
     await Promise.all([
-      Post.deleteMany({ user: req.user.id }),
       Profile.findOneAndRemove({ user: req.user.id }),
       User.findOneAndRemove({ _id: req.user.id }),
     ]);
