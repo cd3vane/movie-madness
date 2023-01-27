@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
-import { AuthState, AuthReducer, initialState } from "../reducers/AuthReducer";
+import { initialState, AuthState, AuthReducer } from "../reducers/AuthReducer";
 import { api } from "../utils/api";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -9,9 +9,15 @@ export const AuthProvider = (props: any) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("token", JSON.stringify(state.token));
-    localStorage.setItem("user", JSON.stringify(state.user));
-  }, [state]);
+    setAuthToken(state.token);
+    localStorage.setItem("user", state.user);
+    // @ts-ignore
+    if(!!api.defaults.headers['x-auth-token']) {
+      loadUser();
+    } else {
+      localStorage.setItem("token", state.token);
+    }
+  }, [state.token]);
 
   const createDefaultLists = async () => {
   try {
@@ -39,11 +45,13 @@ export const AuthProvider = (props: any) => {
     try {
       const res = await api.get("/auth");
 
-      console.log(res.data);
+      console.log('loaded user');
       dispatch({
         type: "USER_LOADED",
         payload: res.data,
       });
+
+      console.log(res.data)
     } catch (err) {
       console.log(err);
       dispatch({
@@ -57,7 +65,8 @@ export const AuthProvider = (props: any) => {
     try {
       const res = await api.post("/auth", loginPayload);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      return res.data;
+      setAuthToken(res.data.token);
+      loadUser();
     } catch (err: any) {
       dispatch({
         type: "LOGIN_ERROR",
@@ -76,6 +85,7 @@ export const AuthProvider = (props: any) => {
       });
       createDefaultLists()
       setAuthToken(res.data.token);
+      loadUser();
     } catch (err: any) {
       const errors = err.response.data.errors;
 
@@ -98,9 +108,9 @@ export const AuthProvider = (props: any) => {
       value={{
         user: state.user,
         token: state.token,
-        loading: false,
+        loading: state.loading,
         isAuthenticated: state.isAuthenticated,
-        errorMessage: "",
+        errorMessage: state.errorMessage,
         login: login,
         logout: logout,
         register: register,

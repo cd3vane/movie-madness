@@ -80,7 +80,7 @@ function Navbar() {
                 {isAuthenticated ? (
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Menu.Button id="user-menu" className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
@@ -131,8 +131,8 @@ function Navbar() {
                               href="/"
                               onClick={logout}
                               className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                active ? "sign-out bg-gray-100" : "",
+                                "sign-out block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Sign out

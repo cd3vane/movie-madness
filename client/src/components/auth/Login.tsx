@@ -10,7 +10,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const { login, isAuthenticated } = useContext(AuthContext);
+  const { login, isAuthenticated, user } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
 
   const { email, password } = formData;
@@ -18,17 +18,23 @@ const Login = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    login(email, password);
+    try{
+      await login(email, password);
+    } catch(err){
+      setAlert("Something went wrong ", "error");
+      console.log(err)
+    }
+    
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && user !== null) {
       setAlert("Successfully logged you in", "success");
       navigate("/account/dashboard");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, user]);
 
   return (
     <form onSubmit={(e) => onSubmit(e)} className="form">

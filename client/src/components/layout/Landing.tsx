@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { api } from "../../utils/api";
 import { AlertContext } from "../../context/AlertContext";
 import { AuthContext } from "../../context/AuthContext";
+import Spinner from "./Spinner";
 
 function Landing() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { loading, user } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
 
   const deleteAccount = () => async () => {
@@ -18,28 +19,17 @@ function Landing() {
     }
   };
 
-  if (isAuthenticated) {
-    return (
-      <div>
-        <h1 className="text-3xl font-bold underline">
-          Welcome to the signed in version my password knowing friend
-        </h1>
-        <div className="my-2">
-          <button type="button" id="delete" className="btn btn-danger" onClick={deleteAccount}>
-            Delete My Account
-          </button>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <h1 className="text-3xl font-bold underline">
-          Welcome to Movie Madness
-        </h1>
-      </div>
-    );
+  return(
+  <Fragment>
+      {loading || user === null ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <h1>This is the signed in version my boi</h1>
+          </Fragment>)}
+    </Fragment>
+  )
   }
-}
+
 
 export default Landing;

@@ -1,13 +1,25 @@
 export type AuthState = {
-  user: string;
-  token: string;
+  user: string | null;
+  token: string | null;
   loading: boolean;
-  isAuthenticated: boolean;
+  isAuthenticated: boolean | null;
   errorMessage: string;
   login: any;
   logout: any;
   register: any;
   loadUser: any;
+};
+
+export const initialState: AuthState = {
+  user: localStorage.getItem("user"),
+  token: localStorage.getItem("token"),
+  loading: true,
+  isAuthenticated: !!localStorage.getItem("token") ? false : true,
+  errorMessage: "",
+  login: () => {},
+  logout: () => {},
+  register: () => {},
+  loadUser: () => {},
 };
 
 type ReducerAction =
@@ -17,55 +29,43 @@ type ReducerAction =
   | { type: "REGISTER_SUCCESS"; payload: any }
   | { type: "REGISTER_FAIL" }
   | { type: "LOGOUT" }
+  | { type: "ACCOUNT_DELETED" }
   | { type: "LOGIN_ERROR"; error: string };
 
-export const initialState: AuthState = {
-  user: JSON.parse(localStorage.getItem("user") || '""'),
-  token: JSON.parse(localStorage.getItem("token") || '""'),
-  loading: true,
-  isAuthenticated: false,
-  errorMessage: "",
-  login: () => {},
-  logout: () => {},
-  register: () => {},
-  loadUser: () => {},
-};
-
-export const AuthReducer = (initialState: AuthState, action: ReducerAction) => {
+export const AuthReducer = (state: AuthState, action: ReducerAction) => {
   switch (action.type) {
     case "USER_LOADED":
       return {
-        ...initialState,
+        ...state,
         isAuthenticated: true,
-        token: action.payload.token,
+        loading: false,
         user: action.payload,
       };
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
       return {
-        ...initialState,
+        ...state,
         ...action.payload,
         isAuthenticated: true,
-        token: action.payload.token,
-        user: action.payload,
         loading: false,
       };
+    case "ACCOUNT_DELETED":
     case "AUTH_ERROR":
     case "LOGOUT":
       return {
-        ...initialState,
+        ...state,
         loading: false,
         isAuthenticated: false,
-        user: "",
-        token: "",
+        user: null,
+        token: null,
       };
     case "LOGIN_ERROR":
       return {
-        ...initialState,
+        ...state,
         loading: false,
         errorMessage: action.error,
       };
     default:
-      throw new Error(`Unhandled action type: ${action}`);
+      return state;
   }
 };

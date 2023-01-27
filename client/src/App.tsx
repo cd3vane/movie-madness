@@ -15,18 +15,6 @@ import CreateProfile from "./components/auth/CreateProfile";
 import setAuthToken from "./utils/setAuthToken";
 
 function App() {
-  const { loadUser, logout } = useContext(AuthContext);
-  useEffect(() => {
-    loadUser;
-    // @ts-ignore
-    var value = JSON.parse(localStorage.getItem("token"));
-    if (!value) {
-      console.log("token is empty");
-      logout;
-    } else {
-      setAuthToken(localStorage.token);
-    }
-  }, [localStorage, loadUser]);
   return (
     <div className="App">
       <AlertProvider>

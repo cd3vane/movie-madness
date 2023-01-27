@@ -1,9 +1,17 @@
 describe("Auth flows", () => {
-  it("logs in user and redirects to dashboard", () => {
-    cy.login();
+  it.only("fails with invalid username", () => {
+    cy.login("invalid@gmail.com", "anyhting");
+    
+  });
+
+  it("logs in user with form and redirects to dashboard", () => {
+    cy.login("test@gmail.com", "test1234");
     cy.url().should("include", "/account/dashboard");
     cy.get("h1").should("include.text", "signed in version");
+    cy.logout()
   });
+
+  
 
   it("fails when passwords are not the same", () => {
     cy.visit("/register", {
