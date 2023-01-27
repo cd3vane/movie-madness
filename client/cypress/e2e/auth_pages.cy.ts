@@ -1,17 +1,14 @@
 describe("Auth flows", () => {
   it("fails with invalid username", () => {
     cy.login("invalid@gmail.com", "anyhting");
-    
   });
 
   it("logs in user with form and redirects to dashboard", () => {
     cy.login("test@gmail.com", "test1234");
     cy.url().should("include", "/account/dashboard");
     cy.get("h1").should("include.text", "signed in version");
-    cy.logout()
+    cy.logout();
   });
-
-  
 
   it("fails when passwords are not the same", () => {
     cy.visit("/register", {
@@ -45,6 +42,6 @@ describe("Auth flows", () => {
     cy.get("#submit").click();
     cy.url().should("include", "/account/dashboard");
     cy.get("h1").should("include.text", "signed in version");
-    cy.get('#delete').click()
+    cy.get("#delete").click();
   });
 });

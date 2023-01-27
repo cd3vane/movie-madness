@@ -7,8 +7,7 @@ Cypress.Commands.add("login", (email, password) => {
   cy.get("#login-btn").click();
 });
 
-
 Cypress.Commands.add("logout", () => {
-  cy.get("#user-menu").click()
-  cy.get(".sign-out").should("have.text", 'Sign out').click();
+  cy.get("#user-menu").click();
+  cy.get(".sign-out").should("have.text", "Sign out").click();
 });

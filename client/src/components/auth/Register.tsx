@@ -25,13 +25,12 @@ const Register = () => {
       setAlert("Passwords are not the same", "fail");
       return;
     } else {
-      try{
+      try {
         register(formData);
         setAlert("Successfully registered " + formData.username, "success");
-      } catch(err){
+      } catch (err) {
         setAlert("Something went wrong " + err, "error");
       }
-      
     }
   };
 

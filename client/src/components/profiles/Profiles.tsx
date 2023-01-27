@@ -24,7 +24,9 @@ const Profiles = () => {
           <div className="profiles">
             {profiles.length > 0 ? (
               profiles.map((profile: any) => (
-                <ProfileItem key={profile.id} profile={profile} />
+                <div key={profile._id} >
+                  <ProfileItem profile={profile} />
+                 </div>
               ))
             ) : (
               <h4>No profiles found</h4>

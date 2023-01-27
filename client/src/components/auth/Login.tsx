@@ -20,13 +20,12 @@ const Login = () => {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try{
+    try {
       await login(email, password);
-    } catch(err){
+    } catch (err) {
       setAlert("Something went wrong ", "error");
-      console.log(err)
+      console.log(err);
     }
-    
   };
 
   useEffect(() => {

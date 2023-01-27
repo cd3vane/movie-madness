@@ -12,7 +12,7 @@ export const AuthProvider = (props: any) => {
     setAuthToken(state.token);
     localStorage.setItem("user", state.user);
     // @ts-ignore
-    if(!!api.defaults.headers['x-auth-token']) {
+    if (!!api.defaults.headers["x-auth-token"]) {
       loadUser();
     } else {
       localStorage.setItem("token", state.token);
@@ -20,38 +20,38 @@ export const AuthProvider = (props: any) => {
   }, [state.token]);
 
   const createDefaultLists = async () => {
-  try {
-    const watchlist = {
-      name: 'Watchlist',
-      description: 'Movies I need to watch'
-    };
-    const watched = {
-      name: 'Watched',
-      description: 'Movies I have watched'
-    };
-    const liked = {
-      name: 'Liked',
-      description: 'Movies I like'
-    };
-    await api.post('/lists', watchlist);
-    await api.post('/lists', watched);
-    await api.post('/lists', liked);
-  } catch (err) {
-    console.log(err)
-  }
-};
+    try {
+      const watchlist = {
+        name: "Watchlist",
+        description: "Movies I need to watch",
+      };
+      const watched = {
+        name: "Watched",
+        description: "Movies I have watched",
+      };
+      const liked = {
+        name: "Liked",
+        description: "Movies I like",
+      };
+      await api.post("/lists", watchlist);
+      await api.post("/lists", watched);
+      await api.post("/lists", liked);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const loadUser = async () => {
     try {
       const res = await api.get("/auth");
 
-      console.log('loaded user');
+      console.log("loaded user");
       dispatch({
         type: "USER_LOADED",
         payload: res.data,
       });
 
-      console.log(res.data)
+      console.log(res.data);
     } catch (err) {
       console.log(err);
       dispatch({
@@ -83,7 +83,7 @@ export const AuthProvider = (props: any) => {
         type: "REGISTER_SUCCESS",
         payload: res.data,
       });
-      createDefaultLists()
+      createDefaultLists();
       setAuthToken(res.data.token);
       loadUser();
     } catch (err: any) {

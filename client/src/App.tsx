@@ -13,6 +13,7 @@ import Profile from "./components/profile/Profile";
 import Profiles from "./components/profiles/Profiles";
 import CreateProfile from "./components/auth/CreateProfile";
 import setAuthToken from "./utils/setAuthToken";
+import GuestDashboard from "./components/layout/GuestDashboard";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <div className="container mx-auto">
               <Alert />
               <Routes>
-                <Route path="/" element={<Landing />} />
+                <Route path="/" element={<GuestDashboard />} />
                 <Route path="/account/dashboard" element={<Landing />} />
                 <Route path="/discover" element={<Discover />} />
                 <Route path="/login" element={<Login />} />

@@ -8,7 +8,7 @@ function Landing() {
   const { loading, user, logout } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
 
-  const deleteAccount = async () => { 
+  const deleteAccount = async () => {
     try {
       await api.delete("/profile");
 
@@ -19,23 +19,25 @@ function Landing() {
     }
   };
 
-  const onClick = () => {
-    console.log('pressing it')
-    deleteAccount()
-  }
-
-  return(
-  <Fragment>
+  return (
+    <Fragment>
       {loading || user === null ? (
         <Spinner />
       ) : (
         <Fragment>
           <h1>This is the signed in version my boi</h1>
-          <button className="mr-2 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => onClick()} id="delete" > Delete Account </button>
-          </Fragment>)}
+          <button
+            className="mr-2 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onClick={() => deleteAccount()}
+            id="delete"
+          >
+            {" "}
+            Delete Account{" "}
+          </button>
+        </Fragment>
+      )}
     </Fragment>
-  )
-  }
-
+  );
+}
 
 export default Landing;
