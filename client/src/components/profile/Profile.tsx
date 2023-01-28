@@ -28,16 +28,16 @@ const Profile = () => {
       {profile === null || profileLoading ? (
         <Spinner />
       ) : (
-        <Fragment>
-          <Link to='/profiles' className='btn btn-light'>
+        <div className="container">
+          <Link to='/profiles' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
             Back to profiles list
           </Link>
           
           {isAuthenticated &&
             loading === false &&
             // @ts-ignore
-            user._id === params.id && (
-              <Link to='/edit-profile' className='btn btn-dark'>
+            currentUser._id === params.id && (
+              <Link to='/edit-profile' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
                 Edit Profile
               </Link>
             )}
@@ -52,7 +52,7 @@ const Profile = () => {
             <h3>Reviews</h3>
             {/* <Reviews /> */}
           </div>
-        </Fragment>
+        </div>
       )}
     </Fragment>
   );

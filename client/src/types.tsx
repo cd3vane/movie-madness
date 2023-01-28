@@ -11,6 +11,9 @@ export type Movie = {
   runtime?: number; // In minutes
   tagline?: string;
   title: string;
+  vote_count?: number
+  vote_average?: number
+  genres?: any
 };
 
 export type ProfileProps = {

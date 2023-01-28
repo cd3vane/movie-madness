@@ -42,7 +42,7 @@ const ProfileItem = ({
       </div>
       {user._id !== currentUser._id && 
       <div className="float-right">
-        <button onClick={addFollower}className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Follow</button>
+        <button onClick={addFollower} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Follow</button>
       </div>}
     </div>
   );

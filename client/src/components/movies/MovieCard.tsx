@@ -6,7 +6,7 @@ function MovieCard({ movie, show, type }: MovieCardProps) {
     return (
       <div className="movie-card">
         <figure className="relative max-w-sm cursor-pointer filter transition-all duration-300 hover:outline-blue-400">
-          <a href="/">
+          <a href={`/movie/${movie.id}`}>
             <img
               src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
               alt={`${movie.title} Poster`}
@@ -23,7 +23,7 @@ function MovieCard({ movie, show, type }: MovieCardProps) {
   } else if (show) {
     return (
       <figure className="relative max-w-sm cursor-pointer filter transition-all duration-300 hover:outline-blue-400">
-        <a href="/">
+        <a href={`/movie/${show.id}`}>
           <img
             src={`https://image.tmdb.org/t/p/w200${show.poster_path}`}
             alt={`${show.name} Poster`}

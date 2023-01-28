@@ -14,6 +14,7 @@ import CreateProfile from "./components/auth/CreateProfile";
 import EditProfile from "./components/profile/EditProfile";
 import GuestDashboard from "./components/layout/GuestDashboard";
 import Settings from "./components/settings/Settings";
+import MovieDetails from "./components/movies/MovieDetails";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profiles" element={<Profiles />} />
                 <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/movie/:id" element={<MovieDetails />} />
                 <Route path="/create-profile" element={<CreateProfile />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
                 <Route path="/settings" element={<Settings/>} />
