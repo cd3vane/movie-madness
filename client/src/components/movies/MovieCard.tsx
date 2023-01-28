@@ -2,7 +2,7 @@ import { MovieCardProps } from "../../types";
 import MovieControls from "./MovieControls";
 
 function MovieCard({ movie, show, type }: MovieCardProps) {
-  if (movie && type) {
+  if (movie) {
     return (
       <div className="group hover:border-2 border-sky-500">
           <a href={`/movie/${movie.id}`}>

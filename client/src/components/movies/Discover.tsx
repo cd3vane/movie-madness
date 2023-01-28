@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Show, Category } from "../../types";
+import { Movie, Category } from "../../types";
 import MovieCard from "./MovieCard";
 
 function Discover() {
-  const [shows, setShows] = useState<Show[] | null>(null);
+  const [shows, setShows] = useState<Movie[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [pageNumber, setPage] = useState<number>(1);
   const [category, setCategory] = useState<Category>(Category.movie);
@@ -79,7 +79,7 @@ function Discover() {
           <div className="grid grid-cols-5 gap-4">
             {shows.map((show) => (
               <div key={show.id} id="movie-item">
-                <MovieCard show={show} />
+                <MovieCard movie={show} />
               </div>
             ))}
           </div>
