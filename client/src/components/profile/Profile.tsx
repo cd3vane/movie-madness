@@ -12,7 +12,7 @@ const Profile = () => {
   const [profile, setProfile] = useState<any>([]);
 
   const params = useParams();
-  const { isAuthenticated, loading, user } = useContext(AuthContext)
+  const { isAuthenticated, loading, currentUser } = useContext(AuthContext)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,11 +21,11 @@ const Profile = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [params.id]);
 
   return (
     <Fragment>
-      {profileLoading === null || loading ? (
+      {profile === null || profileLoading ? (
         <Spinner />
       ) : (
         <Fragment>

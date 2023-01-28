@@ -8,7 +8,7 @@ const navigation = [
   { name: "Dashboard", href: "/", current: true },
   { name: "Discover", href: "/discover", current: false },
   { name: "Profiles", href: "/profiles", current: false },
-  { name: "About", href: "/", current: false },
+  { name: "About", href: "/about", current: false },
 ];
 
 function classNames(...classes: any) {
@@ -16,7 +16,7 @@ function classNames(...classes: any) {
 }
 
 function Navbar() {
-  const { logout, isAuthenticated } = useContext(AuthContext);
+  const { logout, isAuthenticated, currentUser } = useContext(AuthContext);
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -87,7 +87,7 @@ function Navbar() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src={currentUser && currentUser.avatar}
                           alt=""
                         />
                       </Menu.Button>
@@ -105,7 +105,7 @@ function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="/"
+                              href="/profile/me"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
@@ -118,7 +118,7 @@ function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="/"
+                              href="/settings"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"

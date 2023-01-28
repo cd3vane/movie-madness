@@ -1,5 +1,7 @@
+
+
 export type AuthState = {
-  user: string | null;
+  currentUser: any;
   token: string | null;
   loading: boolean;
   isAuthenticated: boolean | null;
@@ -11,7 +13,7 @@ export type AuthState = {
 };
 
 export const initialState: AuthState = {
-  user: localStorage.getItem("user"),
+  currentUser: localStorage.getItem("user"),
   token: localStorage.getItem("token"),
   loading: true,
   isAuthenticated: !!localStorage.getItem("token") ? false : true,
@@ -39,13 +41,14 @@ export const AuthReducer = (state: AuthState, action: ReducerAction) => {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: action.payload,
+        currentUser: action.payload,
       };
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
       return {
         ...state,
         ...action.payload,
+        currentUser: action.payload,
         isAuthenticated: true,
         loading: false,
       };
@@ -56,7 +59,7 @@ export const AuthReducer = (state: AuthState, action: ReducerAction) => {
         ...state,
         loading: false,
         isAuthenticated: false,
-        user: null,
+        currentUser: null,
         token: null,
       };
     case "LOGIN_ERROR":

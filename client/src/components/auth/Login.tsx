@@ -10,7 +10,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const { login, isAuthenticated, user } = useContext(AuthContext);
+  const { login, isAuthenticated, currentUser } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
 
   const { email, password } = formData;
@@ -29,11 +29,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated && user !== null) {
+    if (isAuthenticated && currentUser !== null) {
       setAlert("Successfully logged you in", "success");
       navigate("/account/dashboard");
     }
-  }, [isAuthenticated, navigate, user]);
+  }, [isAuthenticated, navigate, currentUser]);
 
   return (
     <form onSubmit={(e) => onSubmit(e)} className="form">

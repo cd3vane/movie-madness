@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Spinner from "./Spinner";
 
 function Landing() {
-  const { loading, user, logout } = useContext(AuthContext);
+  const { loading, currentUser, logout } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
 
   const deleteAccount = async () => {
@@ -21,7 +21,7 @@ function Landing() {
 
   return (
     <Fragment>
-      {loading || user === null ? (
+      {loading || currentUser === null ? (
         <Spinner />
       ) : (
         <Fragment>

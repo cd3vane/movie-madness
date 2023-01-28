@@ -10,7 +10,7 @@ const Register = () => {
     password: "",
     password2: "",
   });
-  const { register, isAuthenticated, user } = useContext(AuthContext);
+  const { register, isAuthenticated, currentUser } = useContext(AuthContext);
   const { setAlert } = useContext(AlertContext);
   const navigate = useNavigate();
 
@@ -35,10 +35,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated && user !== null) {
+    if (isAuthenticated && currentUser !== null) {
       navigate("/create-profile");
     }
-  }, [isAuthenticated, navigate, user]);
+  }, [isAuthenticated, navigate, currentUser]);
 
   return (
     <div className="flex min-h-screen flex-col">

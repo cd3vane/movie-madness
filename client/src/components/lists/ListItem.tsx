@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
+import ListPreview from './ListPreview';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-// import ListPreview from './ListPreview';
 
 const ListItem = ({ list: { _id, name, movies } } : any) => {
   return (
@@ -13,7 +12,7 @@ const ListItem = ({ list: { _id, name, movies } } : any) => {
               <Link to={`/lists/${_id}`}>{name}</Link>
             </h2>
 
-            {/* <ListPreview movies={movies} /> */}
+            <ListPreview movies={movies} />
           </Fragment>
         ) : (
           <Fragment>
@@ -25,10 +24,6 @@ const ListItem = ({ list: { _id, name, movies } } : any) => {
       </div>
     </div>
   );
-};
-
-ListItem.propTypes = {
-  list: PropTypes.object.isRequired
 };
 
 export default ListItem;

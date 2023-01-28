@@ -10,7 +10,7 @@ export const AuthProvider = (props: any) => {
 
   useEffect(() => {
     setAuthToken(state.token);
-    localStorage.setItem("user", state.user);
+    localStorage.setItem("user", state.currentUser);
     // @ts-ignore
     if (!!api.defaults.headers["x-auth-token"]) {
       loadUser();
@@ -33,6 +33,7 @@ export const AuthProvider = (props: any) => {
         name: "Liked",
         description: "Movies I like",
       };
+      console.log("creating lists")
       await api.post("/lists", watchlist);
       await api.post("/lists", watched);
       await api.post("/lists", liked);
@@ -83,9 +84,11 @@ export const AuthProvider = (props: any) => {
         type: "REGISTER_SUCCESS",
         payload: res.data,
       });
-      createDefaultLists();
+
       setAuthToken(res.data.token);
       loadUser();
+
+      createDefaultLists();
     } catch (err: any) {
       const errors = err.response.data.errors;
 
@@ -106,7 +109,7 @@ export const AuthProvider = (props: any) => {
   return (
     <AuthContext.Provider
       value={{
-        user: state.user,
+        currentUser: state.currentUser,
         token: state.token,
         loading: state.loading,
         isAuthenticated: state.isAuthenticated,

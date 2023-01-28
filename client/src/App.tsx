@@ -1,10 +1,9 @@
-import { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
-import { AuthContext, AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
 import Login from "./components/auth/Login";
 import Discover from "./components/movies/Discover";
@@ -12,8 +11,9 @@ import Alert from "./components/layout/Alert";
 import Profile from "./components/profile/Profile";
 import Profiles from "./components/profiles/Profiles";
 import CreateProfile from "./components/auth/CreateProfile";
-import setAuthToken from "./utils/setAuthToken";
+import EditProfile from "./components/profile/EditProfile";
 import GuestDashboard from "./components/layout/GuestDashboard";
+import Settings from "./components/settings/Settings";
 
 function App() {
   return (
@@ -33,6 +33,8 @@ function App() {
                 <Route path="/profiles" element={<Profiles />} />
                 <Route path="/profile/:id" element={<Profile />} />
                 <Route path="/create-profile" element={<CreateProfile />} />
+                <Route path="/edit-profile" element={<EditProfile />} />
+                <Route path="/settings" element={<Settings/>} />
               </Routes>
             </div>
           </Router>
