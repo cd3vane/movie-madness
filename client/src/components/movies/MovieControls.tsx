@@ -15,22 +15,22 @@ function MovieControls({ type, movie }: ControlProps) {
       {type === "watchlist" && (
         <>
           <button
-            className="ctrl-btn"
+            className="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
             onClick={() => removeWatchlist(movie.id)}
             title="Remove from watchlist"
           >
-            <i className="material-icons">remove_circle_outline</i>
+            +
           </button>
 
           <button
-            className="ctrl-btn"
+            className="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
             onClick={() => {
               addWatched(movie);
               removeWatchlist(movie.id);
             }}
             title="Add to watched"
           >
-            <i className="material-icons">video_library</i>
+            -
           </button>
         </>
       )}
