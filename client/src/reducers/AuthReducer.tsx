@@ -1,5 +1,3 @@
-
-
 export type AuthState = {
   currentUser: any;
   token: string | null;

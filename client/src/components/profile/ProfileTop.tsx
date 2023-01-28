@@ -1,21 +1,23 @@
-import { ProfileProps } from '../../types'
+import { ProfileProps } from "../../types";
 
 const ProfileTop = ({
-  profile: {
-    firstName,
-    lastName,
-    location,
-    social,
-    user
-  }
-} : ProfileProps) => {
+  profile: { firstName, lastName, location, social, user },
+}: ProfileProps) => {
   return (
-    <div className='profile-top bg-primary p-2'>
-      <img className='round-img my-1' src={user.avatar} alt='' />
-      <h1 className='large'>{firstName}{" "}{lastName}</h1>
-      <p>{location ? <span>{location}</span> : null}</p>
-      <div className='icons my-1'>
-        {social ? 'socials over here' : 'no socials'}
+    <div>
+      <img
+        className="h-20 w-20 rounded-full object-center"
+        src={user.avatar}
+        alt=""
+      />
+      <h1 className="text-3xl font-bold">
+        {firstName} {lastName}
+      </h1>
+      <p className="font-medium dark:text-white">
+        {location ? <span>{location}</span> : null}
+      </p>
+      <div className="icons my-1">
+        {social ? "socials over here" : "no socials"}
       </div>
     </div>
   );

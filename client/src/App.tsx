@@ -36,7 +36,7 @@ function App() {
                 <Route path="/movie/:id" element={<MovieDetails />} />
                 <Route path="/create-profile" element={<CreateProfile />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
-                <Route path="/settings" element={<Settings/>} />
+                <Route path="/settings" element={<Settings />} />
               </Routes>
             </div>
           </Router>

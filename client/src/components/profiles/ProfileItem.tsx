@@ -8,17 +8,18 @@ type ProfileItemProps = {
 const ProfileItem = ({
   profile: { firstName, lastName, followers, following, user, bio },
 }: ProfileItemProps) => {
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   const addFollower = () => {
-    if(currentUser !== null){
-      console.log("Following " + firstName)
-      console.log("Adding " + currentUser.username + " to " + firstName + " followers")
-    } else{
-      console.log("you gotta be logged in to follow a user")
+    if (currentUser !== null) {
+      console.log("Following " + firstName);
+      console.log(
+        "Adding " + currentUser.username + " to " + firstName + " followers"
+      );
+    } else {
+      console.log("you gotta be logged in to follow a user");
     }
-    
-  }
+  };
 
   return (
     <div className="border-b-4 p-6 dark:bg-gray-600 dark:text-gray-100 sm:p-12">
@@ -40,10 +41,16 @@ const ProfileItem = ({
         {bio}
         <Link to={`/profile/${user._id}`}>View Profile</Link>
       </div>
-      {user._id !== currentUser._id && 
-      <div className="float-right">
-        <button onClick={addFollower} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Follow</button>
-      </div>}
+      {user._id !== currentUser._id && (
+        <div className="float-right">
+          <button
+            onClick={addFollower}
+            className="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+          >
+            Follow
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -33,7 +33,7 @@ export const AuthProvider = (props: any) => {
         name: "Liked",
         description: "Movies I like",
       };
-      console.log("creating lists")
+      console.log("creating lists");
       await api.post("/lists", watchlist);
       await api.post("/lists", watched);
       await api.post("/lists", liked);
