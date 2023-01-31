@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Movie } from "../../types";
-import { ListContext } from "../../context/ListContext";
 
 type ControlProps = {
   type: string;
