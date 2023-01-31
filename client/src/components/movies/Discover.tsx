@@ -76,7 +76,7 @@ function Discover() {
         </div>
 
         {shows ? (
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-6 gap-6">
             {shows.map((show) => (
               <div key={show.id} id="movie-item">
                 <MovieCard movie={show} />

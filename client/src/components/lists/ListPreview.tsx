@@ -13,9 +13,7 @@ const ListPreview = ({ movies }: PreviewProps) => {
         {movies.map((movie, index) => (
           <div key={index}>
             {index < limit && (
-              <Link to={`/movie-details/${movie.id}`}>
-                <MovieCard key={movie.id} movie={movie} type="movie" />
-              </Link>
+              <MovieCard key={movie.id} movie={movie} type="movie" />
             )}
           </div>
         ))}

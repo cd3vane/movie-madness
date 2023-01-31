@@ -16,8 +16,8 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { isAuthenticated, currentUser } = useContext(AuthContext)
-  
+  const { isAuthenticated, currentUser } = useContext(AuthContext);
+
   const params = useParams();
 
   useEffect(() => {
@@ -38,11 +38,15 @@ const MovieDetails = () => {
           <Link to="/discover">Back</Link>
           <div className="movie-container movie-grid">
             <div className="w-500">
-              <img className="object-contain" src={`${IMGPATH}/${movie.poster_path}`} alt="poster" />
+              <img
+                className="object-contain"
+                src={`${IMGPATH}/${movie.poster_path}`}
+                alt="poster"
+              />
             </div>
             <div className="movie-about">
               <h1 className="text-3xl">{movie.title}</h1>
-              <h3 className="text-xl text-dark-50">{movie.tagline}</h3>
+              <h3 className="text-dark-50 text-xl">{movie.tagline}</h3>
               <p>{movie.overview}</p>
             </div>
             <div className="movie-details">
@@ -79,19 +83,19 @@ const MovieDetails = () => {
             {isAuthenticated ? (
               <Fragment>
                 <MovieActions movie={movie} id={currentUser._id} />
-                <div className='movie-reviews'>
+                <div className="movie-reviews">
                   <MovieReviews id={currentUser.id} />
                 </div>
               </Fragment>
             ) : (
               <Fragment>
                 <h3>
-                  <Link to='/'>Sign in</Link> or
-                  <Link to='/register'> Register </Link>
-                  to add this movie to a list or write a review{' '}
+                  <Link to="/">Sign in</Link> or
+                  <Link to="/register"> Register </Link>
+                  to add this movie to a list or write a review{" "}
                 </h3>
               </Fragment>
-            )} 
+            )}
           </div>
         </Fragment>
       )}
