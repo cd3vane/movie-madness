@@ -27,25 +27,25 @@ function App() {
         <AlertProvider>
           <AuthProvider>
             <ListProvider>
-              <Router>
-                <Navbar />
-                <div className="container mx-auto">
-                  <Alert />
-                  <Routes>
-                    <Route path="/" element={<GuestDashboard />} />
-                    <Route path="/account/dashboard" element={<Landing />} />
-                    <Route path="/discover" element={<Discover />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/profiles" element={<Profiles />} />
-                    <Route path="/profile/:id" element={<Profile />} />
-                    <Route path="/movie/:id" element={<MovieDetails />} />
-                    <Route path="/create-profile" element={<CreateProfile />} />
-                    <Route path="/edit-profile" element={<EditProfile />} />
-                    <Route path="/settings" element={<Settings />} />
-                  </Routes>
-                </div>
-              </Router>
+            <Router>
+              <Navbar />
+              <div className="container mx-auto">
+                <Alert />
+                <Routes>
+                  <Route path="/" element={<GuestDashboard />} />
+                  <Route path="/account/dashboard" element={<Landing />} />
+                  <Route path="/discover" element={<Discover />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/profiles" element={<Profiles />} />
+                  <Route path="/profile/:id" element={<Profile />} />
+                  <Route path="/movie/:id" element={<MovieDetails />} />
+                  <Route path="/create-profile" element={<CreateProfile />} />
+                  <Route path="/edit-profile" element={<EditProfile />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Routes>
+              </div>
+            </Router>
             </ListProvider>
           </AuthProvider>
         </AlertProvider>
