@@ -1,29 +1,25 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import ProfileItem from "./ProfileItem";
-import { api } from "../../utils/api";
+import { useProfiles } from "../../hooks/profile";
+
+
 
 const Profiles = () => {
-  const [profiles, setProfiles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await api.get("/profile");
-      setProfiles(res.data);
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+  const { status, data, error } = useProfiles();
 
   return (
     <Fragment>
-      {loading ? (
+      {status === "loading" ? (
         "Loading.."
+      ) : status === "error" ? (
+        //@ts-ignore
+          <span>Error: {error.message}</span>
       ) : (
         <Fragment>
           <h1 className="text-3xl font-bold underline">Profiles</h1>
           <div className="profiles">
-            {profiles.length > 0 ? (
-              profiles.map((profile: any) => (
+            {data.length > 0 ? (
+              data.map((profile: any) => (
                 <div key={profile._id}>
                   <ProfileItem profile={profile} />
                 </div>

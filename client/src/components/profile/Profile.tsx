@@ -1,32 +1,20 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileLists from "./ProfileLists";
-import { api } from "../../utils/api";
+import { useProfile } from "../../hooks/profile";
 import Spinner from "../layout/Spinner";
 import Reviews from "../reviews/Reviews";
 
 const Profile = () => {
-  const [profileLoading, setLoading] = useState<boolean>(true);
-  const [profile, setProfile] = useState<any>([]);
-
   const params = useParams();
-  const { isAuthenticated, loading, currentUser } = useContext(AuthContext);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await api.get(`/profile/${params.id}`);
-      setProfile(res.data);
-      setLoading(false);
-    };
-    fetchData();
-  }, [params.id]);
-
+  // @ts-ignore
+  const { status, data, error } = useProfile(params.id);
+  
   return (
     <Fragment>
-      {profile === null || profileLoading ? (
+      {status === "loading" ? (
         <Spinner />
       ) : (
         <div className="h-full bg-gray-700 p-8">
@@ -37,8 +25,8 @@ const Profile = () => {
             Back to profiles list
           </Link>
           <div className="m-10">
-            <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
+            <ProfileTop profile={data} />
+            <ProfileAbout profile={data} />
           </div>
           <div className="m-10">
             <ProfileLists id={params.id} />

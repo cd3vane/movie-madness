@@ -7,8 +7,8 @@ const Lists = ({ lists }: any) => {
       <br />
       {lists.length > 0 ? (
         lists.map((list: any) => (
-          <div className="m-5">
-            <ListItem key={list._id} list={list} />
+          <div key={list._id} className="m-5">
+            <ListItem  list={list} />
           </div>
         ))
       ) : (
