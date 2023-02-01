@@ -82,16 +82,16 @@ router.get("/user/:user_id", auth, async (req, res) => {
   }
 });
 
-// @route    GET api/lists/:list_id
+// @route    GET api/lists/:list_name
 // @desc     Get list by id
 // @access   Private
-router.get("/list/:list_id", auth, async (req, res) => {
+router.get("/list/:list_name", auth, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
   try {
-    const list = await Lists.findOne({ _id: req.params.list_id });
+    const list = await Lists.findOne({ name: req.params.list_name });
 
     if (!list) {
       return res.status(400).json({ msg: "There is no such list" });
