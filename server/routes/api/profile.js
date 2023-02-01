@@ -138,7 +138,7 @@ router.get(
 // @access   Private
 router.delete("/", auth, async (req, res) => {
   try {
-    console.log("attempting")
+    console.log("attempting");
     // Remove user posts
     // Remove profile
     // Remove user

@@ -82,23 +82,19 @@ router.get("/user/:user_id", auth, async (req, res) => {
   }
 });
 
-// @route    GET api/lists/:list_name
-// @desc     Get list by id
+// @route    GET api/lists/list/:list_id
+// @desc     Get list by user Id and list name
 // @access   Private
-router.get("/list/:list_name", auth, async (req, res) => {
+router.get("/list/:list_id", auth, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
   try {
-    const list = await Lists.findOne({ name: req.params.list_name });
+    const list = await Lists.findById(req.params.list_id);
 
     if (!list) {
       return res.status(400).json({ msg: "There is no such list" });
-    }
-
-    if (list.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "User not authorized" });
     }
 
     res.json(list);
@@ -133,6 +129,12 @@ router.put(
       if (list.user.toString() !== req.user.id) {
         return res.status(401).json({ msg: "User not authorized" });
       }
+      
+      const movieFound = list.movies.filter((movie) => movie.title === req.body.title)
+      
+      if(!!movieFound){
+        return res.status(400).json({ msg: "Cannot add a movie that is already in the list" });
+      }
 
       list.movies.unshift(req.body);
 
@@ -146,19 +148,18 @@ router.put(
   }
 );
 
-// @route    Delete api/lists/list/:list_id/movie/:movie_id
+// @route    Delete api/lists/list/:list_id/:movie_id
 // @desc     Delete a movie from a list
 // @access   Private
 router.delete("/list/:list_id/:movie_id", auth, async (req, res) => {
   try {
     const list = await Lists.findById(req.params.list_id);
-
-    // Get comment from review
+    // Get movie from list
     const movie = list.movies.find(
       (movie) => movie.movieId === req.params.movie_id
     );
 
-    // Make sure comment exists
+    // Make sure movie exists
     if (!movie) {
       return res.status(404).json({ msg: "Movie not found" });
     }

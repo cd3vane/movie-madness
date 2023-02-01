@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ListContext } from "../../context/ListContext";
 import { api } from "../../utils/api";
 import ListsView from "../lists/ListsView";
 
 const ProfileLists = ({ id }: any) => {
   const [lists, setLists] = useState([]);
+  const { getListById } = useContext(ListContext)
+
   useEffect(() => {
     getLists();
+    getListById('listid')
   }, [id]);
 
   const getLists = async () => {

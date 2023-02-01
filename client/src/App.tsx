@@ -5,6 +5,7 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import { AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
+import { ListProvider } from "./context/ListContext";
 import Login from "./components/auth/Login";
 import Discover from "./components/movies/Discover";
 import Alert from "./components/layout/Alert";
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
       <AlertProvider>
         <AuthProvider>
+          <ListProvider>
           <Router>
             <Navbar />
             <div className="container mx-auto">
@@ -40,6 +42,7 @@ function App() {
               </Routes>
             </div>
           </Router>
+          </ListProvider>
         </AuthProvider>
       </AlertProvider>
     </div>

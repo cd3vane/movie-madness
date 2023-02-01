@@ -14,7 +14,7 @@ function MovieCard({ movie, show, type }: MovieCardProps) {
             alt={`${movie.title} Poster`}
           />
         </Link>
-        <MovieControls type="watchlist" movie={movie} />
+        <MovieControls movie={movie} />
       </div>
     );
   }
