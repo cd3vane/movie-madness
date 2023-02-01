@@ -2,8 +2,6 @@ import { Fragment } from "react";
 import ProfileItem from "./ProfileItem";
 import { useProfiles } from "../../hooks/profile";
 
-
-
 const Profiles = () => {
   const { status, data, error } = useProfiles();
 

@@ -41,7 +41,7 @@ const ProfileItem = ({
         {bio}
         <Link to={`/profile/${user._id}`}>View Profile</Link>
       </div>
-      {user._id !== currentUser._id && (
+      {/* {user._id !== currentUser._id && (
         <div className="float-right">
           <button
             onClick={addFollower}
@@ -50,7 +50,7 @@ const ProfileItem = ({
             Follow
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

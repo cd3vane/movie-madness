@@ -43,7 +43,7 @@ router.post(
 // @route    GET api/lists
 // @desc     Get all lists
 // @access   Private
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -64,7 +64,7 @@ router.get("/", auth, async (req, res) => {
 // @route    GET api/lists/:user_id
 // @desc     Get all lists by user
 // @access   Private
-router.get("/user/:user_id", auth, async (req, res) => {
+router.get("/user/:user_id", async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -85,7 +85,7 @@ router.get("/user/:user_id", auth, async (req, res) => {
 // @route    GET api/lists/list/:list_id
 // @desc     Get list by user Id and list name
 // @access   Private
-router.get("/list/:list_id", auth, async (req, res) => {
+router.get("/list/:list_id", async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
