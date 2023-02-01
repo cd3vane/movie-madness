@@ -129,11 +129,15 @@ router.put(
       if (list.user.toString() !== req.user.id) {
         return res.status(401).json({ msg: "User not authorized" });
       }
-      
-      const movieFound = list.movies.filter((movie) => movie.title === req.body.title)
-      
-      if(!!movieFound){
-        return res.status(400).json({ msg: "Cannot add a movie that is already in the list" });
+
+      const movieFound = list.movies.filter(
+        (movie) => movie.title === req.body.title
+      );
+
+      if (!!movieFound) {
+        return res
+          .status(400)
+          .json({ msg: "Cannot add a movie that is already in the list" });
       }
 
       list.movies.unshift(req.body);

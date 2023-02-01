@@ -11,7 +11,7 @@ const Profile = () => {
   const params = useParams();
   // @ts-ignore
   const { status, data, error } = useProfile(params.id);
-  
+
   return (
     <Fragment>
       {status === "loading" ? (

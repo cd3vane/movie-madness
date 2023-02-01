@@ -1,9 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
@@ -30,25 +27,25 @@ function App() {
         <AlertProvider>
           <AuthProvider>
             <ListProvider>
-            <Router>
-              <Navbar />
-              <div className="container mx-auto">
-                <Alert />
-                <Routes>
-                  <Route path="/" element={<GuestDashboard />} />
-                  <Route path="/account/dashboard" element={<Landing />} />
-                  <Route path="/discover" element={<Discover />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/profiles" element={<Profiles />} />
-                  <Route path="/profile/:id" element={<Profile />} />
-                  <Route path="/movie/:id" element={<MovieDetails />} />
-                  <Route path="/create-profile" element={<CreateProfile />} />
-                  <Route path="/edit-profile" element={<EditProfile />} />
-                  <Route path="/settings" element={<Settings />} />
-                </Routes>
-              </div>
-            </Router>
+              <Router>
+                <Navbar />
+                <div className="container mx-auto">
+                  <Alert />
+                  <Routes>
+                    <Route path="/" element={<GuestDashboard />} />
+                    <Route path="/account/dashboard" element={<Landing />} />
+                    <Route path="/discover" element={<Discover />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/profiles" element={<Profiles />} />
+                    <Route path="/profile/:id" element={<Profile />} />
+                    <Route path="/movie/:id" element={<MovieDetails />} />
+                    <Route path="/create-profile" element={<CreateProfile />} />
+                    <Route path="/edit-profile" element={<EditProfile />} />
+                    <Route path="/settings" element={<Settings />} />
+                  </Routes>
+                </div>
+              </Router>
             </ListProvider>
           </AuthProvider>
         </AlertProvider>

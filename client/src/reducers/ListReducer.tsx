@@ -10,7 +10,7 @@ export type ListState = {
 };
 
 export const initialState: ListState = {
-  watched: JSON.parse(localStorage.getItem("watched") || '[]'),
+  watched: JSON.parse(localStorage.getItem("watched") || "[]"),
   watchedCount: 0,
   listLoading: true,
   removeWatched: () => {},
@@ -19,7 +19,7 @@ export const initialState: ListState = {
 };
 
 type ReducerAction =
-  | { type: "GET_WATCHED"; payload: any } 
+  | { type: "GET_WATCHED"; payload: any }
   | { type: "ADD_WATCHED"; payload: any }
   | { type: "REMOVE_WATCHED"; payload: any };
 
@@ -29,14 +29,14 @@ export const ListReducer = (state: ListState, action: ReducerAction) => {
       return {
         ...state,
         watched: action.payload,
-        listLoading: false
+        listLoading: false,
       };
     case "ADD_WATCHED":
       return {
         ...state,
         watched: [...state.watched, action.payload],
         watchedCount: state.watchedCount + 1,
-        listLoading: false
+        listLoading: false,
       };
     case "REMOVE_WATCHED":
       return {
@@ -45,7 +45,7 @@ export const ListReducer = (state: ListState, action: ReducerAction) => {
           (movie: Movie) => movie.id.toString() !== action.payload
         ),
         watchedCount: state.watchedCount - 1,
-        listLoading: false
+        listLoading: false,
       };
     default:
       return state;

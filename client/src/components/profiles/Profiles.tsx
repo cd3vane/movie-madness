@@ -11,7 +11,7 @@ const Profiles = () => {
         "Loading.."
       ) : status === "error" ? (
         //@ts-ignore
-          <span>Error: {error.message}</span>
+        <span>Error: {error.message}</span>
       ) : (
         <Fragment>
           <h1 className="text-3xl font-bold underline">Profiles</h1>

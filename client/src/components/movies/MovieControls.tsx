@@ -6,33 +6,35 @@ type ControlProps = {
   movie: any;
 };
 function MovieControls({ movie }: ControlProps) {
-  const { watched, removeWatched, addWatched } = useContext(ListContext)
-  const [isWatched, setIsWatched] = useState(false)
-  
+  const { watched, removeWatched, addWatched } = useContext(ListContext);
+  const [isWatched, setIsWatched] = useState(false);
+
   useEffect(() => {
-    if(!!watched.movies){
-      checkIsWatched()
+    if (!!watched.movies) {
+      checkIsWatched();
     }
-  }, [watched])
-  
+  }, [watched]);
+
   const checkIsWatched = () => {
-    const res = watched.movies.filter((entry : Movie) => entry.title === movie.title)
-    console.log(res)
-    setIsWatched(!!res[0])
-  }
+    const res = watched.movies.filter(
+      (entry: Movie) => entry.title === movie.title
+    );
+    console.log(res);
+    setIsWatched(!!res[0]);
+  };
 
   const toggleWatched = () => {
-    const listId = '63acc44c33443f001653ca0a'
-    if(isWatched){
-      if(!!movie.movieId){
-        removeWatched(listId, movie.movieId)
-      } else{
-        removeWatched(watched._id, movie.id)
+    const listId = "63acc44c33443f001653ca0a";
+    if (isWatched) {
+      if (!!movie.movieId) {
+        removeWatched(listId, movie.movieId);
+      } else {
+        removeWatched(watched._id, movie.id);
       }
-    } else{
-      addWatched(listId, movie)
+    } else {
+      addWatched(listId, movie);
     }
-    setIsWatched(!isWatched)
+    setIsWatched(!isWatched);
   };
 
   const toggleLike = () => {
@@ -44,10 +46,13 @@ function MovieControls({ movie }: ControlProps) {
   };
 
   return (
-    
     <div className="inner-card-controls">
       <button
-        className={isWatched ? "rounded py-2 px-4 text-blue-600 hover:border-transparent hover:text-blue-800" : "rounded py-2 px-4 text-white hover:border-transparent hover:text-slate-400"}
+        className={
+          isWatched
+            ? "rounded py-2 px-4 text-blue-600 hover:border-transparent hover:text-blue-800"
+            : "rounded py-2 px-4 text-white hover:border-transparent hover:text-slate-400"
+        }
         onClick={toggleWatched}
         title="Set as watched"
       >

@@ -8,7 +8,7 @@ const Lists = ({ lists }: any) => {
       {lists.length > 0 ? (
         lists.map((list: any) => (
           <div key={list._id} className="m-5">
-            <ListItem  list={list} />
+            <ListItem list={list} />
           </div>
         ))
       ) : (

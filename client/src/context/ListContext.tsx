@@ -12,45 +12,41 @@ export const ListProvider = (props: any) => {
     localStorage.setItem("watched", JSON.stringify(state.watched));
   }, [state]);
 
-  const getListById = async (listId : string) => {
-    try{
-      const watched = '63acc44c33443f001653ca0a'
-      console.log(listId)
+  const getListById = async (listId: string) => {
+    try {
+      const watched = "63acc44c33443f001653ca0a";
+      console.log(listId);
       const res = await api.get(`/lists/list/${watched}`);
-      console.log(res.data.movies)
+      console.log(res.data.movies);
       dispatch({ type: "GET_WATCHED", payload: res.data.movies });
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
-    
-  }
+  };
 
-  const addMovieToWatched = async (listId : string, movie: Movie ) => {
+  const addMovieToWatched = async (listId: string, movie: Movie) => {
     try {
       const body = {
         title: movie.title,
         movieId: movie.id,
-        poster_path: movie.poster_path
+        poster_path: movie.poster_path,
       };
-        await api.put(`/lists/list/${listId}`, body);
-  
-        dispatch({ type: "ADD_WATCHED", payload: movie });
-      } catch (err) {
-        console.log(err);
-      }
-    
+      await api.put(`/lists/list/${listId}`, body);
+
+      dispatch({ type: "ADD_WATCHED", payload: movie });
+    } catch (err) {
+      console.log(err);
+    }
   };
-  const removeMovieFromWatched = async (listId : string, movieId: string) => {
-    try{
+  const removeMovieFromWatched = async (listId: string, movieId: string) => {
+    try {
       const res = await api.delete(`/lists/list/${listId}/${movieId}`);
 
       dispatch({ type: "REMOVE_WATCHED", payload: movieId });
-      console.log(res.data)
-    } catch(err) {
-      console.log(err)
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
     }
-    
-    
   };
 
   return (
